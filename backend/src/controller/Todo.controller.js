@@ -1,5 +1,7 @@
 const TodoModel = require("../models/Todo.model");
 
+//  ------ CreateTodo ------
+
 const CreateTodo = async (req, res) => {
   try {
     const userid = req.user._id;
@@ -23,6 +25,8 @@ const CreateTodo = async (req, res) => {
   }
 };
 
+// ------ GetAlltodos ------
+
 const GetAllTodo = async (req, res) => {
   try {
     const userid = req.user._id;
@@ -44,6 +48,8 @@ const GetAllTodo = async (req, res) => {
     });
   }
 };
+
+//   ----- Update A todo ------
 
 const UpdateTodo = async (req, res) => {
   try {
@@ -73,6 +79,8 @@ const UpdateTodo = async (req, res) => {
     });
   }
 };
+
+// ------ Delete a Todo ------
 
 const DeleteTodo = async (req, res) => {
   try {
