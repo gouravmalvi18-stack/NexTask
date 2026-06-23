@@ -81,7 +81,7 @@ const LoginUser = async (req, res) => {
 
     res.cookie("token", token);
     res.status(200).json({
-      RegisterUser: User,
+      LoginUser: User,
     });
   } catch (error) {
     res.status(500).json({
