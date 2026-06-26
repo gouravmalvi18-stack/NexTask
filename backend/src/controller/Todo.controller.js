@@ -6,13 +6,13 @@ const CreateTodo = async (req, res) => {
   try {
     const userid = req.user._id;
 
-    const { title, task, completed } = req.body;
+    const { title, task, status } = req.body;
     if (!title || !task) {
       return res.status(400).json({
         message: "title and task is required",
       });
     }
-    const todo = await TodoModel.create({ title, task, completed, userid });
+    const todo = await TodoModel.create({ title, task, status, userid });
 
     res.status(201).json({
       Todo: todo,
@@ -54,12 +54,12 @@ const GetAllTodo = async (req, res) => {
 const UpdateTodo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, task, completed } = req.body;
+    const { title, task, status } = req.body;
 
     const UpdateTodo = await TodoModel.findByIdAndUpdate(id, {
       title,
       task,
-      completed,
+      status,
     });
 
     if (!UpdateTodo) {
