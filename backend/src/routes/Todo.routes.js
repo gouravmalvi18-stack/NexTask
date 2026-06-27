@@ -9,9 +9,9 @@ const {
 
 router.post("/createtodo", CreateTodo);
 
-router.get("/alltodos", GetAllTodo);
+router.get("/alltodo", GetAllTodo);
 
-router.delete("/alltodos/:id", DeleteTodo);
+router.delete("/alltodo", DeleteTodo);
 
 router.patch("/Edittodo/:id", UpdateTodo);
 

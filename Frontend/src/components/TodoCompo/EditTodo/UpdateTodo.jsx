@@ -1,7 +1,8 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 //components
 import { StatusDropdown, TimerCompo } from "../../config";
@@ -9,9 +10,10 @@ import { StatusDropdown, TimerCompo } from "../../config";
 //icon
 import { IconArrowLeft, IconFileText, IconPlus } from "@tabler/icons-react";
 
-const CreateTodo = () => {
+const UpdateTodo = () => {
   const ServerPort = import.meta.env.VITE_SERVER_PORT;
   const navigate = useNavigate();
+  const { id } = useParams();
 
   //All States
   const [Title, setTitle] = useState("");
@@ -20,10 +22,10 @@ const CreateTodo = () => {
   const [min, setmin] = useState(0);
 
   // handler
-  const HandleCreateTodo = async () => {
+  const HandleUpdateTodo = async () => {
     try {
-      const res = await axios.post(
-        `${ServerPort}/todo/createtodo`,
+      const res = await axios.patch(
+        `${ServerPort}/todo/Edittodo/${id}`,
         {
           title: Title,
           task: Task,
@@ -39,11 +41,8 @@ const CreateTodo = () => {
         navigate("/todo/alltodo");
       }
     } catch (error) {
-      if (error) {
-        const msg = error.response.data.message;
-
-        toast.error(msg);
-      }
+      const msg = error.response.data.message;
+      toast.error(msg);
       // console.log(error.response);
       // console.log(error.response.status);
       // console.log(error.response.data);
@@ -64,9 +63,9 @@ const CreateTodo = () => {
             </button>
           </div>
           <div className=" h-full w-100">
-            <h1 className="text-white text-2xl font-bold ">Add New Todo</h1>
+            <h1 className="text-white text-2xl font-bold ">EditTodo</h1>
             <p className="text-neutral-500">
-              Create a new Task and Track Your progress
+              Update your current Task and Track Your progress
             </p>
           </div>
         </div>
@@ -126,13 +125,13 @@ const CreateTodo = () => {
           </div>
           <div className="w-[95%]  mt-4 flex justify-end ">
             <button
-              onClick={HandleCreateTodo}
+              onClick={HandleUpdateTodo}
               className="flex gap-1 text-center  bg-gradient-to-r    from-indigo-500 to-violet-600 py-2 px-4 rounded-2xl font-bold text-neutral-50"
             >
               <span>
                 <IconPlus className=" h-6 py-[3px] " stroke={3} />
               </span>
-              AddTodo
+              UpdateTodo
             </button>
           </div>
         </div>
@@ -141,4 +140,5 @@ const CreateTodo = () => {
     </div>
   );
 };
-export default CreateTodo;
+
+export default UpdateTodo;

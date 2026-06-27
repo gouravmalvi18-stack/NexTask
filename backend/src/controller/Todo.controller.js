@@ -6,13 +6,19 @@ const CreateTodo = async (req, res) => {
   try {
     const userid = req.user._id;
 
-    const { title, task, status } = req.body;
-    if (!title || !task) {
+    const { title, task, status, estimatedtime } = req.body;
+    if (!title || !task || !estimatedtime) {
       return res.status(400).json({
-        message: "title and task is required",
+        message: "title and task and estimatedtime are required",
       });
     }
-    const todo = await TodoModel.create({ title, task, status, userid });
+    const todo = await TodoModel.create({
+      title,
+      task,
+      status,
+      estimatedtime,
+      userid,
+    });
 
     res.status(201).json({
       Todo: todo,
@@ -54,11 +60,16 @@ const GetAllTodo = async (req, res) => {
 const UpdateTodo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, task, status } = req.body;
-
+    const { title, task, estimatedtime, status } = req.body;
+    if (!title || !task || !estimatedtime) {
+      return res.status(400).json({
+        message: "title and task and estimatedtime are required to update",
+      });
+    }
     const UpdateTodo = await TodoModel.findByIdAndUpdate(id, {
       title,
       task,
+      estimatedtime,
       status,
     });
 
@@ -84,7 +95,8 @@ const UpdateTodo = async (req, res) => {
 
 const DeleteTodo = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
+
     const DeletedTodo = await TodoModel.findByIdAndDelete(id);
     if (!DeletedTodo) {
       return res.status(404).json({

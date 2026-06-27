@@ -15,6 +15,10 @@ const TodoScheme = new Schema(
       type: String,
       required: true,
     },
+    estimatedtime: {
+      type: Number,
+      required: true,
+    },
     userid: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",

@@ -1,9 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import Signup from "./components/UserCompo/Signup";
-import Login from "./components/UserCompo/Login";
-import AllTodo from "./components/TodoCompo/AllTodo";
-import CreateTodo from "./components/TodoCompo/createTodo/CreateTodo";
+import {
+  Signup,
+  Login,
+  CreateTodo,
+  GetAlltodo,
+  UpdateTodo,
+} from "./components/config";
 
 function App() {
   return (
@@ -11,8 +14,9 @@ function App() {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/todo/alltodos" element={<AllTodo />} />
+        <Route path="/todo/alltodo" element={<GetAlltodo />} />
         <Route path="/todo/createtodo" element={<CreateTodo />} />
+        <Route path="/todo/Edittodo/:id" element={<UpdateTodo />} />
       </Routes>
     </>
   );
