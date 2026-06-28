@@ -90,6 +90,30 @@ const UpdateTodo = async (req, res) => {
     });
   }
 };
+const GetTodoAndUpdate = async (req, res) => {
+  try {
+    const { id, status } = req.body;
+
+    const UpdateStatus = await TodoModel.findByIdAndUpdate(id, {
+      status,
+    });
+
+    if (!UpdateStatus) {
+      return res.status(404).json({
+        message: "Todo not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Status Update",
+    });
+  } catch (error) {
+    res.status(500).json({
+      sucess: false,
+      message: error.message,
+    });
+  }
+};
 
 // ------ Delete a Todo ------
 
@@ -113,4 +137,10 @@ const DeleteTodo = async (req, res) => {
     });
   }
 };
-module.exports = { CreateTodo, GetAllTodo, UpdateTodo, DeleteTodo };
+module.exports = {
+  CreateTodo,
+  GetAllTodo,
+  UpdateTodo,
+  GetTodoAndUpdate,
+  DeleteTodo,
+};

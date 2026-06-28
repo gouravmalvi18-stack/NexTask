@@ -4,6 +4,7 @@ const {
   CreateTodo,
   GetAllTodo,
   UpdateTodo,
+  GetTodoAndUpdate,
   DeleteTodo,
 } = require("../controller/Todo.controller");
 
@@ -12,6 +13,7 @@ router.post("/createtodo", CreateTodo);
 router.get("/alltodo", GetAllTodo);
 
 router.delete("/alltodo", DeleteTodo);
+router.patch("/alltodo", GetTodoAndUpdate);
 
 router.patch("/Edittodo/:id", UpdateTodo);
 

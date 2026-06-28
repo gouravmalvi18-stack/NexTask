@@ -5,6 +5,10 @@ import StatusDropdown from "./TodoCompo/createTodo/StatusDropdown";
 import TimerCompo from "./TodoCompo/createTodo/TimerCompo";
 import UpdateTodo from "./TodoCompo/EditTodo/UpdateTodo";
 import GetAlltodo from "./TodoCompo/Gettodo/GetAlltodo";
+import UpdateBtn from "./TodoCompo/Gettodo/UpdateBtn";
+import DeleteBtn from "./TodoCompo/Gettodo/DeleteBtn";
+import StatusCompo from "./TodoCompo/Gettodo/StatusComp";
+import SeletedBtn from "./TodoCompo/Gettodo/SeletedBtn";
 
 export {
   Signup,
@@ -14,4 +18,8 @@ export {
   TimerCompo,
   UpdateTodo,
   GetAlltodo,
+  UpdateBtn,
+  DeleteBtn,
+  StatusCompo,
+  SeletedBtn,
 };

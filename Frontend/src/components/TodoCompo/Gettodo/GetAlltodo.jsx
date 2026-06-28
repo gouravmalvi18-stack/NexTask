@@ -1,67 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { IconClockHour4, IconEdit, IconTrash } from "@tabler/icons-react";
-import { data, useNavigate } from "react-router";
+import { IconClockHour4 } from "@tabler/icons-react";
+import { useNavigate } from "react-router";
 import axios from "axios";
-
-const StatusCompo = ({ status }) =>
-  status === "pending" ? (
-    <div className="py-1.5 px-6 rounded-2xl bg-amber-600/20">
-      <span className="text-sm font-bold text-amber-400">Pending</span>
-    </div>
-  ) : (
-    <div className="py-1.5 px-6 rounded-2xl bg-green-600/20">
-      <span className="text-sm font-bold text-green-400">Completed</span>
-    </div>
-  );
-
-const UpdateBtn = ({ id, navigate }) => {
-  const handleUpdate = () => {
-    if (id) {
-      navigate(`/todo/Edittodo/${id}`);
-    }
-  };
-
-  return (
-    <button
-      onClick={handleUpdate}
-      className=" py-1.5 px-4 rounded-lg bg-purple-600/20 hover:opacity-70"
-    >
-      <span className="text-sm font-bold text-purple-500 flex justify-center items-center gap-1">
-        <IconEdit stroke={2} className="h-5" />
-        Update
-      </span>
-    </button>
-  );
-};
-
-const DeleteBtn = ({ id, GetAlltodoFromServer, ServerPort }) => {
-  const handleDelete = async () => {
-    try {
-      const res = await axios.delete(`${ServerPort}/todo/alltodo`, {
-        data: {
-          id: id,
-        },
-        withCredentials: true,
-      });
-      if (res) {
-        GetAlltodoFromServer();
-      }
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-  return (
-    <button
-      onClick={handleDelete}
-      className="py-1.5 px-4 rounded-lg bg-red-600/20"
-    >
-      <span className="text-sm font-bold text-red-500 flex justify-center items-center gap-1">
-        <IconTrash stroke={2} className="h-5" />
-        Delete
-      </span>
-    </button>
-  );
-};
+import { UpdateBtn, DeleteBtn, StatusCompo, SeletedBtn } from "../../config";
 
 const GetAlltodo = () => {
   const [Alltodo, setAlltodo] = useState([]);
@@ -80,8 +21,6 @@ const GetAlltodo = () => {
       }
     } catch (error) {
       console.log(error.response);
-      // console.log(error.response.status);
-      // console.log(error.response.data);
     }
     setLoading(false);
   };
@@ -92,7 +31,7 @@ const GetAlltodo = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-primary py-10">
+    <div className="min-h-screen overflow-hidden bg-primary py-10">
       <div className=" w-[90%] mx-auto border-[0.5px] border-white/10 rounded-xl">
         {/* header  */}
         <div className=" w-full flex  justify-evenly items-center px-6">
@@ -114,15 +53,19 @@ const GetAlltodo = () => {
         {/* main card  */}
         <div className=" w-full h-full p-6 ">
           <div className=" w-full  bg-secondary border-[0.5px]  border-white/10 rounded-xl">
-            {/* Main card header  */}
-            <div className="w-full flex justify-center items-center text-neutral-50 text-sm font-bold py-3 rounded-t-xl bg-primary/90 border-b-[0.5px] border-white/10">
+            {/* Main card header */}
+            <div className="min-w-[500px] w-full flex items-center text-neutral-50 text-sm font-bold py-3 rounded-t-xl bg-primary/90 border-b-[0.5px] border-white/10">
               <div className="w-[50%] flex justify-center">
                 <h1>Todo</h1>
               </div>
-              <div className="w-[50%]  flex justify-start  pl-10 gap-30  items-center">
+              <div className="w-[10%] flex justify-center">
                 <h1>Time</h1>
-                <h1 className="pl-3">Status</h1>
-                <h1 className="px-25">Action</h1>
+              </div>
+              <div className="w-[15%] flex justify-center">
+                <h1>Status</h1>
+              </div>
+              <div className="flex-1 flex justify-center">
+                <h1>Action</h1>
               </div>
             </div>
             {/* List of Alltodo  */}
@@ -139,7 +82,14 @@ const GetAlltodo = () => {
                   >
                     {/* Todo title and task  */}
                     <div className="w-[50%] h-full flex  ">
-                      <div className=" w-20  h-full"></div>
+                      {/* Seleted btn  */}
+                      <div className=" w-20  flex justify-center items-center">
+                        <SeletedBtn
+                          ServerPort={ServerPort}
+                          todo={todo}
+                          GetAlltodoFromServer={GetAlltodoFromServer}
+                        />
+                      </div>
                       <div className="flex-1  h-full pl-4 py-2">
                         <h1 className="text-neutral-100 text-lg font-bold">
                           {todo.title}
