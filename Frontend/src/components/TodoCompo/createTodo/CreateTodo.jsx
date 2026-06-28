@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 //components
-import { StatusDropdown, TimerCompo } from "../../config";
+import { StatusDropdown, TimerCompo } from "../../index";
 
 //icon
 import { IconArrowLeft, IconFileText, IconPlus } from "@tabler/icons-react";
@@ -39,14 +39,26 @@ const CreateTodo = () => {
         navigate("/todo/alltodo");
       }
     } catch (error) {
-      if (error) {
-        const msg = error.response.data.message;
-
-        toast.error(msg);
+      if (error.response.status === 403) {
+        navigate("/");
       }
+      const msg = error.response.data.message;
+      toast.error(msg);
       // console.log(error.response);
       // console.log(error.response.status);
       // console.log(error.response.data);
+    }
+  };
+  const hadleLogout = async () => {
+    try {
+      const res = await axios.delete(`${ServerPort}/todo/createtodo`, {
+        withCredentials: true,
+      });
+      if (res) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
@@ -54,20 +66,30 @@ const CreateTodo = () => {
     <div className="h-screen bg-primary flex justify-center items-center">
       <div className="py-5 h-150 w-240 mx-auto bg-secondary border border-white/9 rounded-2xl">
         {/*  Header */}
-        <div className="w-full h-14 flex justify-start">
-          <div className="  w-17   flex justify-center items-center">
-            <button
-              onClick={() => navigate("/todo/alltodo")}
-              className="text-neutral-50 bg-primary  border border-white/9 px-2 py-2 rounded-lg"
-            >
-              <span>{<IconArrowLeft stroke={2} />}</span>
-            </button>
+        <div className="w-full flex  items-center">
+          <div className="w-[50%] flex">
+            <div className="  w-17   flex justify-center items-center">
+              <button
+                onClick={() => navigate("/todo/alltodo")}
+                className="text-neutral-50 bg-primary  border border-white/9 px-2 py-2 rounded-lg"
+              >
+                <span>{<IconArrowLeft stroke={2} />}</span>
+              </button>
+            </div>
+            <div className=" h-full w-100">
+              <h1 className="text-white text-2xl font-bold ">Add New Todo</h1>
+              <p className="text-neutral-500">
+                Create a new Task and Track Your progress
+              </p>
+            </div>
           </div>
-          <div className=" h-full w-100">
-            <h1 className="text-white text-2xl font-bold ">Add New Todo</h1>
-            <p className="text-neutral-500">
-              Create a new Task and Track Your progress
-            </p>
+          <div className="w-1/2 flex justify-end pr-15">
+            <button
+              onClick={hadleLogout}
+              className="py-1 px-4 text-sm font-bold text-neutral-500 bg-neutral-950 border-[0.5px] rounded-xl border-red-500/40"
+            >
+              Logout
+            </button>
           </div>
         </div>
         {/* main card  */}

@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 
 //components
-import { StatusDropdown, TimerCompo } from "../../config";
+import { StatusDropdown, TimerCompo } from "../../index";
 
 //icon
 import { IconArrowLeft, IconFileText, IconPlus } from "@tabler/icons-react";
@@ -41,6 +41,9 @@ const UpdateTodo = () => {
         navigate("/todo/alltodo");
       }
     } catch (error) {
+      if (error.response.status === 403) {
+        navigate("/");
+      }
       const msg = error.response.data.message;
       toast.error(msg);
       // console.log(error.response);

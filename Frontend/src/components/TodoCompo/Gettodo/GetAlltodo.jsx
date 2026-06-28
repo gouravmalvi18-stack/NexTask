@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IconClockHour4 } from "@tabler/icons-react";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { UpdateBtn, DeleteBtn, StatusCompo, SeletedBtn } from "../../config";
+import { UpdateBtn, DeleteBtn, StatusCompo, SeletedBtn } from "../../index";
 
 const GetAlltodo = () => {
   const [Alltodo, setAlltodo] = useState([]);
@@ -20,6 +20,9 @@ const GetAlltodo = () => {
         setAlltodo(res.data.AllTodos);
       }
     } catch (error) {
+      if (error.response.status === 403) {
+        navigate("/");
+      }
       console.log(error.response);
     }
     setLoading(false);
@@ -31,7 +34,7 @@ const GetAlltodo = () => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-primary py-10">
+    <div className="min-h-screen overflow-hidden bg-primary py-10 ">
       <div className=" w-[90%] mx-auto border-[0.5px] border-white/10 rounded-xl">
         {/* header  */}
         <div className=" w-full flex  justify-evenly items-center px-6">
@@ -51,7 +54,7 @@ const GetAlltodo = () => {
           </div>
         </div>
         {/* main card  */}
-        <div className=" w-full h-full p-6 ">
+        <div className=" w-full h-full p-6 container mx-auto px-4">
           <div className=" w-full  bg-secondary border-[0.5px]  border-white/10 rounded-xl">
             {/* Main card header */}
             <div className="min-w-[500px] w-full flex items-center text-neutral-50 text-sm font-bold py-3 rounded-t-xl bg-primary/90 border-b-[0.5px] border-white/10">
@@ -78,7 +81,7 @@ const GetAlltodo = () => {
                 return (
                   <div
                     key={idx}
-                    className="   w-full flex items-center  border-t-[0.5px] border-white/10"
+                    className=" container mx-auto px-4   w-full flex items-center  border-t-[0.5px] border-white/10"
                   >
                     {/* Todo title and task  */}
                     <div className="w-[50%] h-full flex  ">
