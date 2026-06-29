@@ -10,10 +10,6 @@ A modern full-stack Todo application built with the MERN stack that helps users 
 ### All Todos Dashboard
 ![All Todos Dashboard](./assets/Alltodo.png)
 
-### Create Todo
-![Create Todo](./assets/CreateTodo.png)
-
-
 ---
 
 ## ✨ Features
