@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const {
@@ -29,7 +30,9 @@ const Login = () => {
         navigate("/todo/alltodo");
       }
     } catch (error) {
-      console.log(error.response);
+      if (error.response.status === 404) {
+        navigate("/signup");
+      }
     }
   };
 
@@ -74,13 +77,7 @@ const Login = () => {
               type="email"
               placeholder="Enter your Email"
               className="bg-secondary mt-2 text-sm text-neutral-200  rounded-lg py-2 px-3 border-[0.5px] border-white/30 focus:outline-[0.5px] focus:outline-indigo-500"
-              {...register("email", {
-                validate: {
-                  matchPattern: (value) =>
-                    /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(value) ||
-                    "Please enter valid email",
-                },
-              })}
+              {...register("email")}
             />
             {errors && errors.email && (
               <span className="text-red-500 text-sm pl-2 pt-2">
@@ -97,13 +94,7 @@ const Login = () => {
               type="text"
               placeholder="Enter your Password"
               className="bg-secondary mt-2 text-sm text-neutral-200  rounded-lg py-2 px-3 border-[0.5px] border-white/30 focus:outline-[0.5px] focus:outline-indigo-500"
-              {...register("password", {
-                required: "Password Required",
-                minLength: {
-                  value: 8,
-                  message: "Password must be at least 8 characters long",
-                },
-              })}
+              {...register("password")}
             />
             {errors && errors.password && (
               <span className="text-red-500 text-sm pl-2 pt-2">
@@ -122,6 +113,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 };

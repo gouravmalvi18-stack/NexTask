@@ -33,6 +33,19 @@ const GetAlltodo = () => {
     }, 500);
   }, []);
 
+  const hadleLogout = async () => {
+    try {
+      const res = await axios.delete(`${ServerPort}/todo/createtodo`, {
+        withCredentials: true,
+      });
+      if (res) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <div className="min-h-screen overflow-hidden bg-primary py-10 ">
       <div className=" w-[90%] mx-auto border-[0.5px] border-white/10 rounded-xl">
@@ -44,7 +57,13 @@ const GetAlltodo = () => {
               Manage your tasks and track your time
             </p>
           </div>
-          <div className=" h-full w-1/2 flex justify-end items-center  pt-2">
+          <div className=" h-full gap-4 w-1/2 flex justify-end items-center  pt-2">
+            <button
+              onClick={hadleLogout}
+              className="py-1 px-4 text-sm font-bold text-neutral-500 bg-neutral-950 border-[0.5px] rounded-xl border-red-500/40 hover:border-red-500"
+            >
+              Logout
+            </button>
             <button
               onClick={() => navigate("/todo/createtodo")}
               className="flex gap-1 text-center  bg-gradient-to-r    from-indigo-500 to-violet-600 py-1 px-4 rounded-2xl font-bold text-neutral-50"

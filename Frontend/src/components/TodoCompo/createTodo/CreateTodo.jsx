@@ -86,7 +86,7 @@ const CreateTodo = () => {
           <div className="w-1/2 flex justify-end pr-15">
             <button
               onClick={hadleLogout}
-              className="py-1 px-4 text-sm font-bold text-neutral-500 bg-neutral-950 border-[0.5px] rounded-xl border-red-500/40"
+              className=" hover:border-red-500 py-1 px-4 text-sm font-bold text-neutral-500 bg-neutral-950 border-[0.5px] rounded-xl border-red-500/40"
             >
               Logout
             </button>
