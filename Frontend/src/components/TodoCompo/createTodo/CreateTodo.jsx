@@ -152,7 +152,7 @@ const CreateTodo = () => {
               className="flex gap-1 text-center  bg-gradient-to-r    from-indigo-500 to-violet-600 py-2 px-4 rounded-2xl font-bold text-neutral-50"
             >
               <span>
-                <IconPlus className=" h-6 py-[3px] " stroke={3} />
+                <IconPlus className=" h-6 py-0.75 " stroke={3} />
               </span>
               AddTodo
             </button>
