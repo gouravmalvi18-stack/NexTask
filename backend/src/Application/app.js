@@ -27,8 +27,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 //routes
-app.use("/", UserRouter);
-app.use("/todo", AuthMiddlware, TodoRouter);
+app.use("/api", UserRouter);
+app.use("/api/todo", AuthMiddlware, TodoRouter);
 
 // Serve React build
 app.use(express.static(path.join(__dirname, "../../../Frontend/dist")));
