@@ -5,6 +5,11 @@ A modern full-stack Todo application built with the MERN stack that helps users 
 
 ---
 
+## Deployment Link
+https://nextask-t3ea.onrender.com/
+
+---
+
 ## Preview
 
 ### All Todos Dashboard
