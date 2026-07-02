@@ -46,44 +46,44 @@ const UpdateTodo = () => {
       }
       const msg = error.response.data.message;
       toast.error(msg);
-      // console.log(error.response);
-      // console.log(error.response.status);
-      // console.log(error.response.data);
     }
   };
 
   return (
-    <div className="h-screen bg-primary flex justify-center items-center">
-      <div className="py-5 h-150 w-240 mx-auto bg-secondary border border-white/9 rounded-2xl">
-        {/*  Header */}
-        <div className="w-full h-14 flex justify-start">
-          <div className="  w-17   flex justify-center items-center">
+    <div className="min-h-screen bg-primary flex justify-center items-center py-8 px-3 sm:px-4">
+      <div className="py-5 w-full max-w-[960px] md:w-240 h-auto md:h-150 mx-auto bg-secondary border border-white/9 rounded-2xl">
+        {/* Header */}
+        <div className="w-full h-auto md:h-14 flex items-center justify-start px-4 sm:px-0 gap-2">
+          <div className="w-12 md:w-17 flex justify-center items-center shrink-0">
             <button
               onClick={() => navigate("/todo/alltodo")}
-              className="text-neutral-50 bg-primary  border border-white/9 px-2 py-2 rounded-lg"
+              className="text-neutral-50 bg-primary border border-white/9 px-2 py-2 rounded-lg"
             >
               <span>{<IconArrowLeft stroke={2} />}</span>
             </button>
           </div>
-          <div className=" h-full w-100">
-            <h1 className="text-white text-2xl font-bold ">EditTodo</h1>
-            <p className="text-neutral-500">
+          <div className="h-full flex-1 min-w-0 md:w-100">
+            <h1 className="text-white text-xl sm:text-2xl font-bold">
+              EditTodo
+            </h1>
+            <p className="text-neutral-500 text-sm sm:text-base">
               Update your current Task and Track Your progress
             </p>
           </div>
         </div>
-        {/* main card  */}
-        <div className="h-[80%] w-full p-5">
-          <div className="h-full w-full flex flex-col gap-y-3 bg-primary rounded-2xl  border border-white/9">
-            {/* Title compo  */}
-            <div className="h-[20%] w-full py-4 px-7 ">
-              <label className="block text-2xl font-semibold text-white mb-2">
+
+        {/* main card */}
+        <div className="h-auto md:h-[80%] w-full p-4 sm:p-5">
+          <div className="h-full w-full flex flex-col gap-y-3 bg-primary rounded-2xl border border-white/9">
+            {/* Title compo */}
+            <div className="h-auto md:h-[20%] w-full py-4 px-4 sm:px-7">
+              <label className="block text-lg sm:text-2xl font-semibold text-white mb-2">
                 Title <span className="text-red-500">*</span>
               </label>
-              <div className=" bg-secondary  flex items-center gap-3 rounded-lg px-4 focus-within:ring-[0.5px] focus-within:ring-indigo-500">
-                <span className="text-violet-500  text-sm">☰</span>
+              <div className="bg-secondary flex items-center gap-3 rounded-lg px-4 focus-within:ring-[0.5px] focus-within:ring-indigo-500">
+                <span className="text-violet-500 text-sm">☰</span>
                 <input
-                  className=" flex-1 bg-transparent outline-none text-white text-sm py-3.5 placeholder-gray-600"
+                  className="flex-1 bg-transparent outline-none text-white text-sm py-3.5 placeholder-gray-600"
                   value={Title}
                   type="text"
                   onChange={(e) => setTitle(e.target.value)}
@@ -92,12 +92,12 @@ const UpdateTodo = () => {
               </div>
             </div>
             {/* Task compo */}
-            <div className="h-[50%] w-full py-1 px-7 mt-3">
-              <label className="block text-2xl font-semibold text-white mb-2">
+            <div className="h-auto md:h-[50%] w-full py-1 px-4 sm:px-7 mt-3">
+              <label className="block text-lg sm:text-2xl font-semibold text-white mb-2">
                 Task <span className="text-red-500">*</span>
               </label>
-              <div className=" bg-secondary flex  gap-2 rounded-lg pt-2 pl-4 pr-1 focus-within:ring-[0.5px] focus-within:ring-indigo-500">
-                <span className="text-violet-500  text-sm  h-6 w-7 text-center  mt-0.5">
+              <div className="bg-secondary flex gap-2 rounded-lg pt-2 pl-4 pr-1 focus-within:ring-[0.5px] focus-within:ring-indigo-500">
+                <span className="text-violet-500 text-sm h-6 w-7 text-center mt-0.5">
                   {<IconFileText stroke={2} />}
                 </span>
                 <textarea
@@ -105,20 +105,20 @@ const UpdateTodo = () => {
                   onChange={(e) => setTask(e.target.value)}
                   placeholder="e.g :- Study routing, middleware, and request handling in Express.js"
                   rows={5}
-                  className="w-full resize-none bg-transparent scrollbar-none outline-none text-white text-sm placeholder-gray-600  py-2 leading-relaxed"
+                  className="w-full resize-none bg-transparent scrollbar-none outline-none text-white text-sm placeholder-gray-600 py-2 leading-relaxed"
                 />
               </div>
             </div>
-            {/* Status  compo  */}
-            <div className="h-[50%] w-full flex justify-center items-center ">
-              <div className="h-full w-[40%] flex flex-col gap-y-2 px-9  ">
-                <label className=" text-sm font-bold pl-1 text-neutral-200 ">
+            {/* Status compo */}
+            <div className="h-auto md:h-[50%] w-full flex flex-col md:flex-row justify-center items-stretch md:items-center gap-4 md:gap-0 py-2 md:py-0">
+              <div className="h-full w-full md:w-[40%] flex flex-col gap-y-2 px-4 sm:px-9">
+                <label className="text-sm font-bold pl-1 text-neutral-200">
                   Status
                 </label>
                 <StatusDropdown Status={Status} setStatus={setStatus} />
               </div>
-              {/* Timer compo  */}
-              <div className="h-full w-[50%]  ">
+              {/* Timer compo */}
+              <div className="h-full w-full md:w-[50%] px-4 sm:px-9 md:px-0">
                 <label className="block text-sm font-semibold text-white mb-2">
                   Time for Task <span className="text-red-500">*</span>
                 </label>
@@ -126,13 +126,13 @@ const UpdateTodo = () => {
               </div>
             </div>
           </div>
-          <div className="w-[95%]  mt-4 flex justify-end ">
+          <div className="w-full mt-4 flex justify-center md:justify-end">
             <button
               onClick={HandleUpdateTodo}
-              className="flex gap-1 text-center  bg-gradient-to-r    from-indigo-500 to-violet-600 py-2 px-4 rounded-2xl font-bold text-neutral-50"
+              className="flex gap-1 justify-center items-center text-center bg-gradient-to-r from-indigo-500 to-violet-600 py-2 px-4 rounded-2xl font-bold text-neutral-50 w-full md:w-auto"
             >
               <span>
-                <IconPlus className=" h-6 py-[3px] " stroke={3} />
+                <IconPlus className="h-6 py-[3px]" stroke={3} />
               </span>
               UpdateTodo
             </button>
