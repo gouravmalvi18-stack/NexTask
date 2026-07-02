@@ -61,51 +61,7 @@ https://nextask-t3ea.onrender.com/
 
 ---
 
-## 🔐 Authentication Flow
 
-1. User registers an account.
-2. Password is hashed .
-3. User logs in.
-4. Server generates a JWT token.
-5. Protected routes verify the token.
-6. Logged-in users can manage only their own todos.
-
----
-
-### Install Dependencies
-
-#### Backend
-
-```
-cd backend
-npm install
-```
-
-#### Frontend
-
-```
-cd frontend
-npm install
-```
-
----
-
-
-## Run Development Server
-
-### Backend
-
-```
-npm run dev
-```
-
-### Frontend
-
-```
-npm run dev
-```
-
----
 
 ## 📖 Learning Objectives
 
@@ -119,8 +75,6 @@ This project demonstrates:
 * CRUD Operations
 * Express Middleware
 * Protected Routes
-* State Management Patterns
-* Responsive UI Development
 
 ---
 
