@@ -74,7 +74,6 @@ This project demonstrates:
 * MongoDB Relationships
 * CRUD Operations
 * Express Middleware
-* Protected Routes
 
 ---
 
